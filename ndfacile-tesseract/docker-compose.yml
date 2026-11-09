@@ -1,0 +1,29 @@
+services:
+  auto-ndf:
+    image: auto_ndf:tesseract
+    build: .
+
+    working_dir: /app
+
+    # keep container running without underlying process
+    tty: true
+    stdin_open: true
+    user: "1000:1000"
+    volumes:
+      - ./img:/app/img
+
+    # Dev things
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
+          initial_sync: true
+
+        # rebuild if reqs change
+        - action: rebuild
+          path: ./pyproject.toml
+
+        # Doesnt seem to work
+        - action: rebuild
+          path: ./Dockerfile

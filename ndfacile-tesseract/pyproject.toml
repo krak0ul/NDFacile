@@ -1,0 +1,16 @@
+[project]
+name = "ndfacile"
+version = "0.1"
+
+dependencies = [
+    "pytesseract==0.3.13",
+    "typer",
+    "dateparser"
+]
+
+[project.scripts]
+ndfacile = "ndfacile.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
